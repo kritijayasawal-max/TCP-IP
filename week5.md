@@ -90,4 +90,118 @@ Switch Configuration Screenshot
 ovs-vsctl show
 <img width="940" height="1439" alt="image" src="https://github.com/user-attachments/assets/9e3d948f-aebe-41b4-b5ab-4bb307910df4" />
 
+Task 2
+VLAN Router Lab – Vlan-Router-<studentid>
+1. Project Setup
+
+I copied my previous project Vlan-Basics-<studentid> and renamed it to Vlan-Router-12301900. 
+2. Adding the Router
+
+I added a Linux Router node to the topology.
+I connected the router to the Open vSwitch using:
+
+Router → Switch port eth0
+
+This is the only interface used on the router for this task.
+
+3. IP Address Configuration
+
+I configured the hosts into two different subnets, based on VLAN separation.
+
+Subnet 1 (VLAN 678):
+Host1: 192.168.10.1 /24
+Host2: 192.168.10.2 /24
+Subnet 2 (VLAN 679):
+Host3: 192.168.20.1 /24
+Host4: 192.168.20.2 /24
+
+This ensures that routing is required for communication between the two groups.
+
+4. Starting All Nodes
+
+I started all devices:
+
+4 Linux Hosts
+1 Open vSwitch
+1 Linux Router
+
+I verified that all nodes were running correctly.
+
+5. VLAN Configuration on Switch (Access Ports)
+
+I configured VLANs on the switch similar to Task 1.
+
+Host1 and Host2 → VLAN 678
+Host3 and Host4 → VLAN 679
+
+Each port connected to a host was configured as an access port with the appropriate VLAN tag.
+
+6. Configure Trunk Port
+
+I configured eth0 on the switch (connected to the router) as a trunk port.
+
+This port was set to:
+
+Accept traffic from multiple VLANs
+Carry VLAN 678 and VLAN 679
+
+This allows communication between the switch and router for both VLANs.
+
+7. Router VLAN Configuration (Sub-Interfaces)
+
+I configured the router to support VLANs using sub-interfaces on its eth0 interface.
+
+Example configuration:
+ip link add link eth0 name eth0.678 type vlan id 678
+ip link add link eth0 name eth0.679 type vlan id 679
+
+ip addr add 192.168.10.254/24 dev eth0.678
+ip addr add 192.168.20.254/24 dev eth0.679
+
+ip link set eth0 up
+ip link set eth0.678 up
+ip link set eth0.679 up
+
+These IP addresses act as the default gateways for each VLAN.
+
+8. Default Gateway Configuration on Hosts
+
+I configured each host to use the router as its gateway.
+
+VLAN 678:
+Gateway: 192.168.10.254
+VLAN 679:
+Gateway: 192.168.20.254
+9. Connectivity Testing
+
+I tested connectivity using the ping command.
+
+Results:
+Hosts within the same VLAN could communicate successfully
+Hosts in different VLANs could now also communicate through the router
+
+This confirmed that inter-VLAN routing was working correctly.
+
+10. Outputs Generated
+ I exported the project as:
+Vlan-Router-12301900.gns3project
+<img width="779" height="468" alt="image" src="https://github.com/user-attachments/assets/bd859c60-2f1b-491a-a5c2-c744a8d55f47" />
+
+2. Network Screenshot
+
+I captured the full network topology and saved it as:
+Vlan-Router-<studentid>-network.png
+
+3. Switch Configuration Screenshot
+
+I captured the switch configuration using:
+
+ovs-vsctl show
+
+The screenshot clearly shows:
+
+Access ports with VLAN tags
+The trunk port (eth0) connected to the router
+
+
 
