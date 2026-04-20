@@ -26,7 +26,6 @@ After assigning the IP addresses, I enabled the network interfaces on each host.
 
 I started all five nodes (four Linux hosts and one Open vSwitch) in GNS3 and confirmed that they were running properly.
 
-5. Initial Connectivity Testing
 
 I tested connectivity between all hosts using the ping command.
 
@@ -34,23 +33,23 @@ At this stage:
 
 All hosts were able to communicate with each other successfully
 This confirmed that the network was working correctly before VLAN configuration
-6. VLAN Configuration
 
 Next, I configured VLANs on the Open vSwitch.
 
 Based on my student ID, I selected VLAN IDs (for example):
 
-VLAN 678
-VLAN 679
+VLAN 900
+VLAN 901
 
 I assigned:
 
-Host1 and Host2 to VLAN 678
-Host3 and Host4 to VLAN 679
+Host1 and Host2 to VLAN 900
+Host3 and Host4 to VLAN 901
+<img width="911" height="241" alt="image" src="https://github.com/user-attachments/assets/bf8983f2-e8f9-4384-9f6d-19615fc721cd" />
+
 
 I applied VLAN tags to the corresponding switch ports.
 
-7. Connectivity Testing After VLAN Configuration
 
 After configuring the VLANs, I tested connectivity again.
 
@@ -59,10 +58,12 @@ The results were:
 Host1 could communicate with Host2
 Host3 could communicate with Host4
 Hosts in different VLANs could not communicate with each other
+<img width="941" height="546" alt="image" src="https://github.com/user-attachments/assets/5fe5d096-f078-40a4-8e9f-5563fe3aab28" />
+
 
 This showed that VLANs were successfully isolating network traffic.
 
-8. ARP Table Verification
+
 
 I checked the ARP tables on each host.
 
@@ -73,20 +74,20 @@ There were no entries for hosts in the other VLAN
 
 This confirmed that the VLAN configuration was working correctly at Layer 2.
 
-9. Outputs Generated
-1. Exported Project
-
+ Outputs Generated
 I exported the project as:
 Vlan-Basics-<studentid>.gns3project
+<img width="625" height="412" alt="image" src="https://github.com/user-attachments/assets/8a8042a1-539a-492b-8c99-0c5167c1a074" />
 
-2. Network Screenshot
 
-I captured a screenshot of the network topology and saved it as:
-Vlan-Basics-<studentid>-network.png
 
-3. Switch Configuration Screenshot
+I captured a screenshot of the network topology.
+<img width="749" height="425" alt="image" src="https://github.com/user-attachments/assets/7defedca-14c9-4c02-9d47-d4fdd6203ad8" />
 
-I captured the switch configuration showing the ports and VLAN tags and saved it as:
-Vlan-Basics-<studentid>-ports.png
 
-Conclusion
+I captured the switch configuration showing the ports and VLAN tags.
+Switch Configuration Screenshot
+ovs-vsctl show
+<img width="940" height="1439" alt="image" src="https://github.com/user-attachments/assets/9e3d948f-aebe-41b4-b5ab-4bb307910df4" />
+
+
