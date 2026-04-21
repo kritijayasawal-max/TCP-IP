@@ -21,6 +21,8 @@ After these communications, I ran ip neigh show again. The table was now populat
 
 
 Task 2
+<img width="956" height="751" alt="image" src="https://github.com/user-attachments/assets/6e385721-34cf-4c72-8e2f-49be85e2677a" />
+
 In this task, I built a more complex network spanning three subnets to demonstrate how routers and default gateways enable cross-network communication.
 
 I connected two separate subnets via two routers (Router 1 and Router 2), which were themselves connected to form a third "backbone" subnet.
